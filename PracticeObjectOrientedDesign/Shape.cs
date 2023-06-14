@@ -6,26 +6,55 @@ using System.Threading.Tasks;
 
 namespace PracticeObjectOrientedDesign
 {
-    class Shape
+    interface IShape
     {
-        public ShapeType Type { get; set; }
-        public double Radius { get; set; }
-        public double SideLength { get; set; }
-        // ... 他の共通のプロパティやメソッド ...
+        double CalculateArea();
+    }
+
+    class Square : IShape
+    {
+        double SideLength;
+
+        public Square(double num)
+        {
+            SideLength = num;
+        }
 
         public double CalculateArea()
         {
-            double area = 0;
+            return SideLength * SideLength;
+        }
+    }
 
-            if (Type == ShapeType.Circle)
-            {
-                area = Math.PI * Radius * Radius;
-            }
-            else if (Type == ShapeType.Square)
-            {
-                area = SideLength * SideLength;
-            }
-            return area;
+    class Circle : IShape
+    {
+        double Radius;
+
+        public Circle(double num)
+        {
+            Radius = num;
+        }
+
+        public double CalculateArea()
+        {
+            return Math.PI * Radius * Radius;
+        }
+    }
+
+    class Triangle : IShape
+    {
+        double Bottom,
+               Height;
+
+        public Triangle(double num1, double num2)
+        {
+            Bottom = num1;
+            Height = num2;
+        }
+
+        public double CalculateArea()
+        {
+            return Bottom * Height / 2;
         }
     }
 }

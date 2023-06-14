@@ -6,33 +6,17 @@ using System.Threading.Tasks;
 
 namespace PracticeObjectOrientedDesign
 {
-    enum ShapeType
-    {
-        Circle,
-        Square
-    }
-
     internal class Program
     {
         static void Main(string[] args)
         {
-            Shape circle = new Shape
-            {
-                Type = ShapeType.Circle,
-                Radius = 5
-            };
+            IShape circle = new Circle(5);
+            IShape square = new Square(10);
+            IShape triangle = new Triangle(3, 5);
 
-            Shape square = new Shape
-            {
-                Type = ShapeType.Square,
-                SideLength = 10
-            };
-
-            double circleArea = circle.CalculateArea();
-            double squareArea = square.CalculateArea();
-
-            Console.WriteLine("円の面積: " + circleArea);
-            Console.WriteLine("正方形の面積: " + squareArea);
+            Console.WriteLine("円の面積: " + circle.CalculateArea());
+            Console.WriteLine("正方形の面積: " + square.CalculateArea());
+            Console.WriteLine("三方形の面積: " + triangle.CalculateArea());
         }
     }
 }
